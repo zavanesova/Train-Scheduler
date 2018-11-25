@@ -31,3 +31,6 @@ body{
 #submit:hover{
     background-color:#539dd1;
 }
+div.card{
+    margin-bottom: 33px;
+}
