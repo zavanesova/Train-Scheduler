@@ -5,6 +5,9 @@ body{
     border-radius: 4px;
     background-color: #1a4359;
     color: white;
+    font-family: 'Rhodium Libre', serif;
+    line-height: 50px;
+    text-shadow: 2px 2px 2px black;
 
 }
 #current-card.card-body{
