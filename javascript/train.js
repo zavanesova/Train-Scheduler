@@ -30,6 +30,12 @@ $('#submit').on("click", function (event) {
         frequency: frequency,
         trainTime: trainTime,
     });
+
+    $('#train-name').val('');
+    $('#destination').val('');
+    $('#frequency').val('');
+    $('#train-time').val('');
+    
   });
 
 database.ref('/new-trains').on("child_added", function(snapshot) {
@@ -39,20 +45,24 @@ database.ref('/new-trains').on("child_added", function(snapshot) {
 
     var newName = sv.trainName;
     var newDestination = sv.destination;
-    var newFrequency = sv.frequency;
-    var newTime = sv.trainTime;
+    var newFrequency = parseInt(sv.frequency);
+    var firstTime = sv.trainTime;
 
-    // var minutesAway = moment().diff(moment(newTime, "HH:mm"), "minutes");
-    var minutesAway = moment(newTime, "HH:mm").diff(moment(), "minutes");
+    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "year");
+    var currentTime = moment();
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    var tRemainder = diffTime % newFrequency;
+    var minutesAway = newFrequency - tRemainder;
+    var nextTrain = moment().add(minutesAway, "minutes").format("HH:mm");
 
     var newRow = $('<tr>').append(
         $('<td>').text(newName),
         $('<td>').text(newDestination),
         $('<td>').text(newFrequency),
-        $('<td>').text(newTime),
+        $('<td>').text(nextTrain),
         $('<td>').text(minutesAway)
     );
     $('#table-body').append(newRow);
-
-
+    
 });
+

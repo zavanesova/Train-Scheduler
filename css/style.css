@@ -3,7 +3,28 @@ body{
 }
 .jumbotron{
     border-radius: 4px;
-    background-color: #bbc2c9;
-    
+    background-color: #1a4359;
+    color: white;
 
+}
+#current-card.card-body{
+    background-color:#153749;
+    color: white;
+}
+.card{
+    background-color: #153749;
+    color: white;
+}
+.card-header{
+    background-color:#10394f;
+}
+.form-control{
+    background-color:#163c51;
+}
+#submit{
+    margin-bottom: 15px; 
+    background-color: #2a658e;
+}
+#submit:hover{
+    background-color:#539dd1;
 }
